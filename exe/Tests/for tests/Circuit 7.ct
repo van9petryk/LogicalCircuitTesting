@@ -1,0 +1,13 @@
+INPUTS: x1, x2, x3, x4, x5, x6;
+OUTPUTS: y1, y2;
+ELEMENTS: e1, e6, e9 = AND, e3 = NOT, e7 = NOR, e5 = OR, e10 = XOR;
+LINKS: e1(x1, x2, x3), e3(e1), e5(e3, e7), e6(x3, x4, x5), e7(e1, e6, e9), e9(x3, x4, x6), e10(e6, e9), y1(e5), y2(e10);
+
+TASK t1
+MALFUNCTIONS: e1, e3, e5, e6, e7, e9, e10, x1, x2, x3, x4, x5, x6 = 0, e1, e3 = 1;
+TESTS: ct(111101, 001110);
+
+TASK t2
+MALFUNCTIONS: e1, e3, e5, e6, e7, e9 = 1;
+TESTS: dt(000000, 001101);
+DIAGNOSTIC: dt(y1=[00, 11, 10, 11, 11, 10], y2 = [01, 01, 01, 10, 01, 11]);

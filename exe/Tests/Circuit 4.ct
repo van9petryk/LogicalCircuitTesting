@@ -1,0 +1,13 @@
+INPUTS: x1, x2, x3, x4, x5, x6;
+OUTPUTS: y1, y2;
+ELEMENTS: e1, e3, e4, e5, e6 = NAND, e2 = NOT;
+LINKS: e1(x4, x6), e2(x5), e3(e2, e1), e4(x1, x2, x3), e5(x3, x4), e6(e4, e5), y1(e6), y2(e3);
+
+TASK t1
+MALFUNCTIONS: e1, e2, e3, e4, e5, e6, x1, x2 = 0, e1, e2, e3, e4, e5, e6, x1, x2 = 1;
+TESTS: ct(111000, 011000, 101000);
+
+TASK t2
+MALFUNCTIONS: e1, e3, e4, e5, e6, x1 = 1;
+TESTS: dt(011000, 001100);
+DIAGNOSTIC: dt(y1=[11,01,01,00,11,11], y2=[00,11,00,00,00,00]);

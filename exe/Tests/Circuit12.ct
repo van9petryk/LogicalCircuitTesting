@@ -1,0 +1,9 @@
+INPUTS: x1, x2, x3, x4, x5;
+OUTPUTS: y;
+ELEMENTS: e1 = NOT, e2 = AND, e3 = OR, e4 = XOR, e5 = NOT, e6 = OR, e7 = NAND;
+LINKS: e1(x1), e2(e1, x2), e3(e2, e6), e4(e3, e7), e5(x3), e6(e5, x1), e7(x4, x5), y(e4);
+
+TASK s1
+MALFUNCTIONS: e1, e2, e3, e4, e5, e6, e7, x1, x2, x3, x4, x5 = 0,
+e1, e2, e3 = 1;
+TESTS: ct(00011, 00100, 01100), ct2(01111, 00100, 00000, 10100);
